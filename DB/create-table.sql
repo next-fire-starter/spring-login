@@ -13,6 +13,9 @@ CREATE TABLE IF NOT EXISTS users (
   PRIMARY KEY(id)
 );
 
+ALTER TABLE users ADD CONSTRAINT UKEY_user_email UNIQ(email);
+
+COMMENT ON TABLE users IS 'ユーザ';
 COMMENT ON COLUMN users.id IS 'ユーザID';
 COMMENT ON COLUMN users.name IS 'ユーザー名';
 COMMENT ON COLUMN users.email IS 'メールアドレス';
@@ -22,6 +25,17 @@ COMMENT ON COLUMN users.lock_flag IS 'ロックフラグ TRUE:ロック';
 COMMENT ON COLUMN users.disable_flag IS '無効フラグ TRUE:無効';
 COMMENT ON COLUMN users.create_at IS '作成日';
 COMMENT ON COLUMN users.update_at IS '更新日';
+
+DROP TABLE IF EXISTS user_profile;
+CREATE TABLE IF NOT EXISTS user_profile (
+  id serial,
+  user_id BIGINT NOT NULL,
+  nick_name VARCHAR(60),
+  avatar_image BYTEA,
+  create_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  update_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY(id)
+);
 ---------------------------------------------------------------------------------------------mysql
 DROP TABLE IF EXISTS user;
 CREATE TABLE user (
