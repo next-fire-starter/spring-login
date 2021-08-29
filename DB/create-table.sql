@@ -29,7 +29,6 @@ COMMENT ON COLUMN users.update_at IS '更新日';
 -- テーブル確認コマンド \dt+
 -- テーブルカラム確認コマンド \d+ users
 
-
 ----------------------------------------------------------------user_profile
 
 DROP TABLE IF EXISTS user_profile;
