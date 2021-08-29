@@ -36,6 +36,16 @@ CREATE TABLE IF NOT EXISTS user_profile (
   update_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY(id)
 );
+
+ALTER TABLE user_profile ADD CONSTRAINT FOREIGN KEY FKEY_user_profile_id_user_id (user_id) REFERENCES user (id);
+
+COMMENT ON TABLE user_profile IS 'ユーザプロフィール';
+COMMENT ON COLUMN user_profile.user_id IS 'ユーザID';
+COMMENT ON COLUMN user_profile.nick_name IS 'ニックネーム';
+COMMENT ON COLUMN user_profile.avatar_image IS 'アバター';
+COMMENT ON COLUMN user_profile.create_at IS '作成日';
+COMMENT ON COLUMN user_profile.update_at IS '更新日';
+
 ---------------------------------------------------------------------------------------------mysql
 DROP TABLE IF EXISTS user;
 CREATE TABLE user (
